@@ -1,0 +1,43 @@
+- const { isNaN } = Number
+- const { lowerCase } = require('lodash')
+- const { isdef } = require('ferrum')
+- const { fmtTime, fmtDuration } = require('./format')
+
+link(rel="stylesheet", type="text/css", href="style.css")
+
+#fahrplan
+  h1#logo-container
+    img#logo(
+      title="36C3 Haecksen Fahrplan",
+      alt="36C3 Haecksen Fahrplan 'Ist Weibsvolk anwesend?'",
+      src="./assets/logo.svg")
+  ol.days
+    - for (const day of days)
+      // Day 3 is giant, day 4 is tiny in a three column layout day
+      // 4 would completely disappear, so we always display just two
+      // columns…
+      - if (day.name === 3)
+        div.break
+      li.day(id='day-' + day.name)
+        h2 Tag #{day.name}
+        ol.talks
+          - for (const talk of day.talks)
+            li.talk(id=lowerCase(talk.title).replace(/\s/g, ''))
+
+              div.line.line1
+                h3.title
+                  - if (isdef(talk.link))
+                    a(href=talk.link) #{talk.title}
+                  - else
+                    | #{talk.title}
+                - if(isdef(talk.speaker))
+                  p.speaker #{talk.speaker}
+
+              div.line.line2
+                p.time #{fmtTime(talk.start)}
+                p.duration #{isNaN(talk.end) ? "Open End!" : fmtDuration(talk.end - talk.start)}
+                p.location Ort: #{talk.location}
+
+              div.bulk
+                - if (isdef(talk.description))
+                  p.description #{talk.description}

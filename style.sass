@@ -1,0 +1,175 @@
+html, body
+  width: 100%
+  margin: 0px
+
+#fahrplan
+  width: 100%
+  color: #D0D0CE
+  background-color: #111111
+  font-family: "Tomorrow"
+
+  #logo-container
+    display: flex
+
+    #logo
+      max-width: 100%
+      margin: auto
+      flex: auto
+
+  ol > li, ol
+    list-style: none
+    margin-left: 0px
+
+  ol
+    padding-left: 0.5em
+
+  h1, h2
+    font-family: "Blackout Midnight"
+    line-height: 1.2em
+    font-size: 2.5em
+    margin-left: -0.15em
+
+  h3
+    font-family: "Blackout Zwo"
+    line-height: 1.2em
+    color: #FE5000
+
+  .days
+    display: flex
+    justify-content: center
+    flex-flow: wrap
+    max-width: 100%
+
+    .break
+      width: 100%
+
+    .day
+      flex-flow: row
+      max-width: 30em
+      margin-bottom: 4em
+      padding-left: 2em
+      padding-right: 2em
+
+      .talk
+        break-inside: avoid
+        margin-bottom: 2em
+
+        .line
+          margin-bottom: 0.3em
+
+        .line > *
+          display: inline
+          margin-right: 0.3em
+
+        .line.line2
+          color: #00BB31
+          margin-top: 0.6em
+          font-size: 1.0.5em
+
+        .title
+          font-size: 1.4em
+          color: #FE5000
+
+          a
+            color: inherit
+            text-decoration: none
+
+        .speaker
+          font-family: "Blackout Midnight"
+          line-height: 1.2em
+          font-size: 1.3em
+
+        .bulk
+          margin-top: 1em
+
+
+    #day-4
+      h3
+        color: #00BB31
+
+      .line.line2
+        color: #D0D0CE
+
+@media print
+  body
+    font-size: 0.7em
+
+  #fahrplan
+    #logo-container > #logo
+      margin-top: 0.5cm
+      margin-bottom: 2cm
+
+    .days
+      display: block
+
+      li.day#day-1
+        float: left
+        clear: left
+        width: 8cm
+        margin-right: 0cm
+        padding-left: 1.8cm
+
+      li.day#day-2
+        float: right
+        clear: right
+        width: 8cm
+        margin-left: 0cm
+        padding-right: 1.8cm
+
+      li.day#day-3, li.day#day-4
+        display: block
+        page-break-before: always
+        max-width: 100%
+        width: 100%
+        flex: none
+
+      li.day#day-3
+        padding-top: 2.5cm
+
+        h2
+          padding-left: 1.8cm
+
+        ol.talks
+          column-count: 2
+          padding-left: 2cm
+          padding-right: 2cm
+
+      li.day#day-4
+        padding-top: 2cm
+
+        h2
+          padding-left: 4.8cm
+          color: #00BB31
+
+        ol.talks
+          padding-left: 5cm
+
+  @page
+    margin-top: 0cm
+    margin-left: 0cm
+    margin-right: 0cm
+
+  @page :first
+    margin-top: 1cm
+    margin-left: 1cm
+    margin-right: 1cm
+    margin-bottom: 1cm
+
+
+@font-face
+  font-family: 'Blackout Midnight'
+  font-style: normal
+  font-weight: normal
+  src: url('./assets/Blackout\ Midnight\ Umlauts.ttf') format('truetype')
+
+@font-face
+  font-family: 'Blackout Zwo'
+  font-style: normal
+  font-weight: normal
+  src: url('./assets/Blackout\ Zwo\ Uhr\ Nachts.ttf') format('truetype')
+
+@font-face
+  font-family: 'Tomorrow'
+  font-style: normal
+  font-weight: 400
+  src: local('Tomorrow Regular'), local('Tomorrow-Regular'), url('./assets/Tomorrow/Tomorrow-Regular.ttf') format('truetype')
